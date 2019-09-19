@@ -630,7 +630,7 @@ inline T LOG10(const T& a) {
 	return T(log10(a));
 }
 template<typename T>
-constexpr T powi(T base, int exp) {
+inline T powi(T base, int exp) {
 	T result(1);
 	while (exp) {
 		if (exp & 1)
@@ -640,7 +640,7 @@ constexpr T powi(T base, int exp) {
 	}
 	return result;
 }
-constexpr int log2i(int val) {
+inline int log2i(int val) {
 	int ret = -1;
 	while (val > 0) {
 		val >>= 1;
