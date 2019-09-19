@@ -131,10 +131,12 @@ namespace boost { void throw_exception(std::exception const&); }
 #endif
 #endif
 
-#pragma push_macro("free")
-#undef free
-#pragma push_macro("DEBUG")
-#undef DEBUG
+#ifdef _BAZEL_BUILD
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/calib3d/calib3d.hpp"
+#else
 #include <opencv2/core/version.hpp>
 #if CV_MAJOR_VERSION > 2 || CV_MINOR_VERSION > 3
 #include <opencv2/opencv_modules.hpp>
@@ -146,6 +148,7 @@ namespace boost { void throw_exception(std::exception const&); }
 namespace cv { namespace gpu = cuda; }
 #else
 #include <opencv2/gpu/gpu.hpp>
+#endif
 #endif
 #endif
 #pragma pop_macro("DEBUG")
